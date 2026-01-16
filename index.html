@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md. Rifat Sarkar | UX Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Modern Palette */
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --bg-body: #f3f6fc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --gradient: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.025);
+            --shadow-hover: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+            --radius: 16px;
+        }
+
+        /* --- Reset & Base --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr; /* Sidebar Layout for Desktop */
+            gap: 30px;
+        }
+
+        /* --- Sidebar (Left Column) --- */
+        aside {
+            position: sticky;
+            top: 40px;
+            height: fit-content;
+        }
+
+        .profile-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+
+        .img-wrapper {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            padding: 4px;
+            background: var(--gradient);
+            position: relative;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-card);
+            background-color: #eee;
+        }
+
+        .name { font-size: 1.75rem; font-weight: 700; color: var(--text-main); line-height: 1.2; margin-bottom: 5px; }
+        .title { color: var(--primary); font-weight: 500; font-size: 1rem; margin-bottom: 20px; }
+
+        .contact-list { text-align: left; margin-top: 25px; border-top: 1px solid var(--border); padding-top: 20px; }
+        .contact-item { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 0.9rem; color: var(--text-muted); }
+        .contact-item i { color: var(--primary); font-size: 1.1rem; }
+        .contact-item a:hover { color: var(--primary); text-decoration: underline; }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background: var(--gradient);
+            color: white;
+            font-weight: 600;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            transition: 0.3s;
+        }
+        .download-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+        /* --- Main Content (Right Column) --- */
+        main { display: flex; flex-direction: column; gap: 30px; }
+
+        section {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        section:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+
+        /* Decorative line on top of sections */
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--gradient);
+            opacity: 0.8;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-main);
+        }
+        h2 i { color: var(--primary); }
+
+        /* --- Experience Cards --- */
+        .timeline-item {
+            position: relative;
+            padding-left: 20px;
+            padding-bottom: 30px;
+            border-left: 2px solid var(--border);
+        }
+        .timeline-item:last-child { padding-bottom: 0; border-left: 2px solid transparent; }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -7px; top: 5px;
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid #e0e7ff;
+        }
+
+        .job-card {
+            background: #f8fafc;
+            padding: 15px 20px;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+        .job-card:hover { background: #f1f5f9; }
+
+        .job-role { font-weight: 700; font-size: 1.1rem; color: var(--text-main); }
+        .job-company { color: var(--primary); font-weight: 600; font-size: 0.95rem; }
+        .job-date { font-size: 0.85rem; color: #94a3b8; margin-left: auto; }
+
+        .job-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; flex-wrap: wrap; gap: 5px; }
+        
+        .description { font-size: 0.95rem; color: var(--text-muted); padding-left: 18px; }
+        .description li { margin-bottom: 5px; list-style-type: disc; }
+
+        /* --- Skills --- */
+        .skills-wrapper { display: flex; flex-direction: column; gap: 20px; }
+        .skill-category h3 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; color: #94a3b8; margin-bottom: 10px; font-weight: 700; }
+        
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag {
+            background: #f1f5f9;
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+        .tag:hover {
+            background: #eff6ff;
+            color: var(--primary);
+            border-color: #bfdbfe;
+            transform: scale(1.05);
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 850px) {
+            .container { grid-template-columns: 1fr; margin: 20px auto; }
+            aside { position: static; }
+            .profile-card { text-align: left; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+            .img-wrapper { margin: 0; width: 100px; height: 100px; }
+            .profile-info { flex: 1; }
+            .contact-list { display: none; /* Hide detailed contact on mobile header, maybe move to footer */ }
+            .job-header { flex-direction: column; }
+            .job-date { margin-left: 0; margin-top: 2px; }
+        }
+        @media (max-width: 500px) {
+            .profile-card { flex-direction: column; text-align: center; }
+            .img-wrapper { margin: 0 auto 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <aside>
+            <div class="profile-card">
+                <div class="img-wrapper">
+                    <img src="profile.jpg" alt="Profile" class="profile-img">
+                </div>
+                <div class="profile-info">
+                    <h1 class="name">Md. Rifat Sarkar</h1>
+                    <p class="title">UX Engineer</p> <a href="resume.pdf" class="download-btn">
+                        <i class="ri-file-download-line"></i> Download Resume
+                    </a>
+                </div>
+
+                <div class="contact-list">
+                    <div class="contact-item">
+                        <i class="ri-mail-send-line"></i>
+                        <a href="mailto:mdrifatsarkar@gmail.com">mdrifatsarkar@gmail.com</a> </div>
+                    <div class="contact-item">
+                        <i class="ri-linkedin-box-line"></i>
+                        <a href="https://linkedin.com/in/rifatskr" target="_blank">linkedin.com/in/rifatskr</a> </div>
+                    <div class="contact-item">
+                        <i class="ri-phone-line"></i>
+                        <span>+880-1762-940-323</span> </div>
+                    <div class="contact-item">
+                        <i class="ri-map-pin-line"></i>
+                        <span>Thakurgaon, Bangladesh</span> </div>
+                </div>
+            </div>
+        </aside>
+
+        <main>
+            <section>
+                <h2><i class="ri-user-smile-line"></i> About Me</h2>
+                <p style="color: var(--text-muted);">
+                    UX Engineer with 5+ years of industry experience bridging user experience design and software engineering practices across web and mobile platforms. Currently working as a UX Engineer at Oxolla, collaborating closely with developers to translate user-centered designs into scalable, technically feasible solutions.
+                </p>
+            </section>
+
+            <section>
+                <h2><i class="ri-briefcase-line"></i> Experience</h2>
+                
+                <div class="timeline-item">
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-role">UX Engineer</div> <div class="job-company">Oxolla</div> </div>
+                            <div class="job-date">Dec 2025 - Present</div> </div>
+                        <ul class="description">
+                            <li>Translate user requirements into engineering-ready interaction logic and component specifications.</li>
+                            <li>Collaborate with front-end and back-end teams to ensure scalable, system-aligned UX solutions.</li>
+                            <li>Use usability metrics and agile practices to optimize system performance.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-role">UI/UX Designer</div> <div class="job-company">Oxolla</div> </div>
+                            <div class="job-date">May 2025 - Nov 2025</div> </div>
+                        <ul class="description">
+                            <li>Led design initiatives for a wide range of client projects in web and mobile platforms.</li>
+                            <li>Conducted design sprints and usability tests, leading to a 28% retention boost and 35% better usability.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-role">UI/UX Designer (Contractual)</div> <div class="job-company">WayToBook</div> </div>
+                            <div class="job-date">Jun 2023 - Apr 2025</div> </div>
+                        <ul class="description">
+                            <li>Served as the sole product designer, leading the end-to-end MVP design process.</li>
+                            <li>Achieved a 90% prototype completion rate with strong feedback during pre-launch testing.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="ri-rocket-line"></i> Key Projects</h2>
+                <div class="timeline-item">
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-role">izi.TRAVEL App</div> <div class="job-company">ITC LLC</div> </div>
+                        <p class="description" style="padding-left:0;">
+                            Redesigned the mobile user interface, contributing to 1M+ app downloads and improving user satisfaction by 27%.
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-role">FeetAI App</div> <div class="job-company">University College Dublin</div> </div>
+                        <p class="description" style="padding-left:0;">
+                            Integrated AI and AR technologies to improve accuracy and UX in virtual foot measurement.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="ri-tools-line"></i> Skills</h2>
+                <div class="skills-wrapper">
+                    <div class="skill-category">
+                        <h3>UX Engineering & HCI</h3>
+                        <div class="tags">
+                            <span class="tag">Interaction Logic</span> <span class="tag">Design Systems</span> <span class="tag">WCAG Accessibility</span> <span class="tag">Edge-Case Management</span> </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Technical</h3>
+                        <div class="tags">
+                            <span class="tag">HTML5 & CSS3</span> <span class="tag">Responsive Design</span> <span class="tag">Git</span> <span class="tag">Agile/Scrum</span> </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Research & Tools</h3>
+                        <div class="tags">
+                            <span class="tag">Usability Testing</span> <span class="tag">A/B Testing</span> <span class="tag">Google Analytics</span> <span class="tag">Hotjar</span> </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="ri-graduation-cap-line"></i> Education & Certifications</h2>
+                <div class="timeline-item">
+                    <div class="job-card">
+                        <div class="job-role">B.Sc in Geography & Environment</div> <div class="job-company">Jahangirnagar University</div> <div class="job-date">Feb 2024</div> <p class="description" style="padding-left:0; margin-top:5px;">CGPA: 3.47 / 4.00</p> </div>
+                </div>
+                
+                <div class="tags" style="margin-top: 20px;">
+                    <span class="tag" style="background:#fff; border:1px solid var(--primary);">IELTS Academic: 6.5</span> <span class="tag" style="background:#fff; border:1px solid var(--primary);">Udacity UX Nanodegree</span> <span class="tag" style="background:#fff; border:1px solid var(--primary);">Google UX Design (Coursera)</span> </div>
+            </section>
+
+            <footer style="text-align: center; color: var(--text-muted); font-size: 0.9rem; padding-top: 20px;">
+                <p>&copy; 2026 Md. Rifat Sarkar. All rights reserved.</p>
+            </footer>
+        </main>
+    </div>
+
+</body>
+</html>
