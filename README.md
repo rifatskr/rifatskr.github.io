@@ -30,5 +30,5 @@ The design focuses on **readability, modern aesthetics, and responsiveness**.
 .
 ├── index.html       # Main HTML structure
 ├── README.md        # Project documentation
-└── profile.jpg      # Profile image (Required)
+├── profile.jpg      # Profile image (Required)
 └── resume.pdf       # Resume (Required)
